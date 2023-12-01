@@ -1,7 +1,7 @@
 #!/usr/bin/groovy
 
 def lines = []
-def digits, first, last, lastSize, combined, originalLine
+def digits, first, last, lastSize, combined
 
 def numberExchanger = [
   one: 1,
@@ -20,7 +20,7 @@ new File('input.txt').eachLine { line ->
   // loop through converter map
   originalLine = line
   numberExchanger.each { word, number ->
-    line = line.replaceAll(word, number.toString())
+    line = line.replaceAll(word, word.substring(0,1) + number.toString() + word.substring(word.size()-1,word.size()))
   }
 
   digits = line.findAll(/\d+/)*.toInteger()
